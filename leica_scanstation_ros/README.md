@@ -39,7 +39,7 @@ Clone and compile these repos:
 
 4. We created scripts to do this: 
 
-        cd catkin_ws\src\leica_scanstation_ros\config
+        cd leica_scanstation_ros\config
         SetLibraryFiles.bat
 
 5. Compile
@@ -73,24 +73,6 @@ Clone and compile these repos:
 ## Windows
 
         roslaunch leica_scanstation_ros start.launch
-
-Use [ROS services](#utils-for-w10-cmd) to control, move and start scanning on the Scanstation
-
-        rosservice list
-
-## Linux
-Clone this package OUT OF WORKSPACE as it won't compile on Linux.
-
-Start LeicaUtils node to save on Param Server pointcloud folder path `/pointcloud_folder`
-
-        roscore
-        rosrun leica_scanstation_utils main 
-
-Move to `/release` folder and run
-
-        wineconsole leica_scanstation_ros_node.exe
-
-Sometimes Wine fails to find DLLs. They are placed on `/extra_dll`. Move them to /release folder.
 
 Use [ROS services](#utils-for-w10-cmd) to control, move and start scanning on the Scanstation
 

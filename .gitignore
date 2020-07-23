@@ -1,0 +1,6 @@
+*.pyc
+*.pts
+*.ptx
+*.pcd
+.vscode/
+doc/*

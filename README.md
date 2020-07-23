@@ -6,21 +6,21 @@ This repository contains packages created to control in PC, throught ROS interfa
 
 Due to Leica's libraries dependencies, the source code relative to SDK have been developed under **Windows 10**. 
 
-For that reason, *leica_scanstation_sdk_control* will only compile on Windows OS.
+For that reason, *leica_scanstation_ros* will only compile on Windows OS.
 
 However, once the program is released, it could be executed in either **Windows or Linux** (with tools such us Wine).
 
 In the following sections, it is described which packages are included and an explanation of how to use them.
 
-For **development purposes**, please refer to *leica_scanstation_sdk_control* documentation. 
+For **development purposes**, please refer to *leica_scanstation_ros* documentation. 
 
 ## Package List
-- **leica_scanstation_sdk_control**. Based on Leica SDK, this package contains functions to communicate with the device using a computer. Note that this package won't compile on Linux. It includes a ROS node with the following options:
+- **leica_scanstation_ros**. Based on Leica SDK, this package contains functions to communicate with the device using a computer. Note that this package won't compile on Linux. It includes a ROS node with the following options:
     - operating the device through ROS services. 
     - to read and understand the information sent by the scanstation which is published in a ROS topic. 
     - to view the video captured by the device which is published as images in another ROS Topic.
 
-- **leica_scanstation_sdk_control_release**. This is not a ROS package but a container for the application and the library files needed to run it. The aim is to be able to execute the program in both Windows and Linux (this one requires additional tools such as wine).
+- **leica_scanstation_ros_release**. This is not a ROS package but a container for the application and the library files needed to run it. The aim is to be able to execute the program in both Windows and Linux (this one requires additional tools such as wine).
 
 - **leica_scanstation_msgs**. This package defines types of messages and services that permit interpretation of the scanner information.
 It is OS independent.
@@ -45,7 +45,7 @@ It is OS independent.
 
 2. Execute program
 
-        roslaunch leica_scanstation_sdk_control start.launch
+        roslaunch leica_scanstation_ros start.launch
 
 3. Use [ROS services](#code-api) to control, move and start scanning on the Scanstation
 
@@ -57,9 +57,9 @@ It is OS independent.
         mkdir -p ~/catkin_ws/src && cd ~/catkin_ws/src
         git clone https://imlara@bitbucket.org/ayr_catec/leica_scanstation.git
 
-2. Remove package *leica_scanstation_sdk_control* to avoid compilation errors.
+2. Remove package *leica_scanstation_ros* to avoid compilation errors.
 
-        rm -r leica_scanstation/leica_scanstation_sdk_control
+        rm -r leica_scanstation/leica_scanstation_ros
 
 4. Compile
 
@@ -69,8 +69,8 @@ It is OS independent.
 5. Start roscore in one terminal and execute app in another
 
         roscore
-        cd ~/catkin_ws/src/leica_scanstation/leica_scanstation_sdk_control_release
-        wineconsole leica_scanstation_sdk_control_node.exe
+        cd ~/catkin_ws/src/leica_scanstation/leica_scanstation_ros_release
+        wineconsole leica_scanstation_ros_node.exe
 
 6. Use [ROS services](#code-api) to control, move and start scanning on the Scanstation
 

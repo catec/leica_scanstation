@@ -1,0 +1,18 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "C:\\Users\\inesPC\\catkin_ws\\devel\\include\\**",
+        "C:\\opt\\ros\\melodic\\x64\\include\\**",
+        "C:\\opt\\rosdeps\\x64\\include\\**",
+        "C:\\Users\\inesPC\\catkin_ws\\src\\leica_scanstation_sdk_control\\include\\**",
+        "C:\\Users\\inesPC\\catkin_ws\\src\\leica_scanstation\\leica_scanstation_utils\\include\\**"
+      ],
+      "name": "ROS"
+    }
+  ]
+}

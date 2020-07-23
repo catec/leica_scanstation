@@ -1,0 +1,10 @@
+string file_name
+int64 vertical_res
+int64 horizontal_res
+float64 pan_center
+float64 tilt_center
+float64 width
+float64 height
+---
+bool success   
+string message

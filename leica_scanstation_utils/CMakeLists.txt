@@ -26,8 +26,8 @@ include_directories(
 )
 
 add_library(${PROJECT_NAME}
+  src/ptx_2_pcd.cpp
   src/LeicaUtils.cpp
-  include/${PROJECT_NAME}/ptx_2_pcd.hpp
 )
 
 target_link_libraries(${PROJECT_NAME}

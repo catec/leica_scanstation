@@ -1,0 +1,4 @@
+ - builder: doxygen
+   name: leica_scanstation_utils
+  #  output_dir: doc
+   file_patterns: '*.c *.cpp *.h *.hpp'

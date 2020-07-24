@@ -7,7 +7,7 @@
 #include <ros/console.h>
 #include <ros/package.h>
 
-#include "ptx_2_pcd.hpp"
+#include "leica_scanstation_utils/ptx_2_pcd.h"
 
 #endif 
 
@@ -26,18 +26,6 @@
 class LeicaUtils {
 
 public:
-
-    /**
-     * @brief Construct a new Leica Utils object
-     * 
-     */
-    explicit LeicaUtils() {};
-
-    /**
-     * @brief Destroy the Leica Utils object
-     * 
-     */
-    virtual ~LeicaUtils() {}
 
     /**
      * @brief Search the absolute path for leica_scanstation_utils/pointclouds folder 
@@ -95,6 +83,19 @@ public:
     static void ptx2pcd(std::string file_name);
 
 private:
+
+    /**
+     * @brief This class is not meant to be instantiated.
+     * 
+     */
+    LeicaUtils() {};
+
+    /**
+     * @brief This class is not meant to be instantiated.
+     * 
+     */
+    ~LeicaUtils() {}
+
 
     /** @brief  Absolute Path to leica_scanstation_utils/pointclouds folder   */
     static std::string _pointcloud_path;

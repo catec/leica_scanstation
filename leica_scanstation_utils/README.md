@@ -1,29 +1,14 @@
 # Leica Scanstation Utils
-This package includes some Utils to work with package `leica_scanstation_ros`.
+This package contains common functions to use in combination with package *leica_scanstation_ros* and *leica_pointcloud_processing*.
+The aim is to assist in the program's execution **independently of the OS used**
 
-This package have also the folder `/pointclouds` where scans and pointclouds will be stored. 
+For example, defining the absolute path to the **/pointclouds** folder, where scans and pointclouds will be stored.
 
-# Windows #
-Compile to get `leica_scanstation_utils.dll`. This file is necessary to work on wine together with package leica_scanstation_ros.
-
-# Linux # 
-Compile to get access to pointcloud folder. 
-
-        catkin_make
-
-Run script to store /pointclouds folder path on ROS Param Server
+# Usage #
+Run the main program to store in ROS Param Server the absolute path to pointcloud folder (`/pointcloud_folder`):
 
         rosrun leica_scanstation_utils main
 
-In this package there is also a script to convert pointclouds from Leica format to standard `.pcd`
-
-        rosrun leica_scanstation_utils ptx_2_pcd.py pointcloud_name
-
-
-
 ## Dependencies
 - ROS
-- Python 
-- PCL
-
-        sudo apt-get install ros-distro-pcl-tools
+- Eigen3

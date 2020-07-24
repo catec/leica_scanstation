@@ -12,6 +12,9 @@
 /** @brief Pointer to function for event handler. */
 typedef int (*notify)(HxiEventT*);
 
+typedef HxiEventT  LeicaEvent;
+typedef HxiEventT* LeicaEventPtr;
+
 /**
  * @brief The Leica Scanstation C5 SDK throws events containing information about the current process. 
  *         \n For example, an event indicating DONE when connection between Leica and PC is required. 

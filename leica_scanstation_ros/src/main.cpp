@@ -6,7 +6,7 @@
 ros::Publisher g_pub, g_img_pub; 
 ros::ServiceClient g_client;
 
-int ScannerEventHandler(HxiEventT* Eventer)
+int ScannerEventHandler(LeicaEventPtr Eventer)
 {
 	// Publish on topic /eventer_info
 	leica_scanstation_msgs::EventerInfo event_msg;

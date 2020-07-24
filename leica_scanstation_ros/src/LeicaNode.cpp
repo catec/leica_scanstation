@@ -211,6 +211,8 @@ bool LeicaNode::cancelCb(std_srvs::Trigger::Request &req, std_srvs::Trigger::Res
 	ROS_INFO("Cancel requested ");
 	HXI_Cancel();
 
+	_counter--; // Last scan was cancelled
+
 	res.message = "Canceled";
 	res.success = true;
 	return true;

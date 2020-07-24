@@ -46,7 +46,6 @@ install(
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
 
-
 add_executable(main
   src/main.cpp
 )

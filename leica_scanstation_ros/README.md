@@ -80,4 +80,4 @@ Service calls:
         rosservice call /leica/convert "scan0"
         rosservice call /leica/move 0 0
         rosservice call /leica/scan_info "scan0"
-        rosservice call /leica/scan "scan" 100 100 0 0 0.2 0.2
+        rosservice call /leica/scan "scan" 2048 2048 0 0 0.2 0.2

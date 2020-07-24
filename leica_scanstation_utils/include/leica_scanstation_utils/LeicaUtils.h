@@ -12,13 +12,13 @@
 #endif 
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
-#define DEFAULT_PATH "C:/Users/inesPC/catkin_ws/src/leica_scanstation_utils/pointclouds/"
+#define DEFAULT_PATH "C:/Users/inesPC/catkin_ws/src/leica_scanstation/leica_scanstation_utils/pointclouds/"
 
 #elif __linux__
-#define DEFAULT_PATH "/home/catec/catkin_ws/src/leica_scanstation_utils/pointclouds/"
+#define DEFAULT_PATH "/home/catec/catkin_ws/src/leica_scanstation/leica_scanstation_utils/pointclouds/"
 
 #elif __unix__ // all unices not caught above
-#define DEFAULT_PATH "/home/catec/catkin_ws/src/leica_scanstation_utils/pointclouds/"
+#define DEFAULT_PATH "/home/catec/catkin_ws/src/leica_scanstation/leica_scanstation_utils/pointclouds/"
 
 #endif
 

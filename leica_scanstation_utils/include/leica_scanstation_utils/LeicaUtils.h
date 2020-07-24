@@ -3,7 +3,6 @@
 #ifndef _LEICAUTILS_H
 #define _LEICAUTILS_H
 
-// #include <afx.h>
 #include <ros/ros.h>
 #include <ros/console.h>
 #include <ros/package.h>
@@ -26,19 +25,80 @@
 
 class LeicaUtils {
 
-    public:
+public:
 
-        explicit LeicaUtils() {};
-        virtual ~LeicaUtils() {}
+    /**
+     * @brief Construct a new Leica Utils object
+     * 
+     */
+    explicit LeicaUtils() {};
 
-        static std::string _pc_path;
-        static std::string _default_pc_path;
+    /**
+     * @brief Destroy the Leica Utils object
+     * 
+     */
+    virtual ~LeicaUtils() {}
 
-        static std::string getDefaultPointcloudFolder();
-        static std::string findPointcloudFolder();
-        static std::string getPointCloudFolder();
-        static void setPointCloudFolder(std::string pc_path);
-        static std::string getFilePath(std::string file_name, std::string extension);
-        static std::string getFilePath(std::string file_name, std::string extension, int counter);
-        static void ptx2pcd(std::string file_name);
+    /**
+     * @brief Search the absolute path for leica_scanstation_utils/pointclouds folder 
+     * 
+     * @return std::string 
+     */
+    static std::string findPointcloudFolderPath();
+
+    /**
+     * @brief Get the Default Pointcloud Path object
+     * 
+     * @return std::string 
+     */
+    static std::string getDefaultPointcloudPath();
+
+    /**
+     * @brief Get the Point Cloud Path object
+     * 
+     * @return std::string 
+     */
+    static std::string getPointCloudPath();
+    
+    /**
+     * @brief Set the Point Cloud Path object
+     * 
+     * @param pc_path 
+     */
+    static void setPointCloudPath(std::string pc_path);
+
+    /**
+     * @brief Get the path to file relative to pointcloud path defined
+     * 
+     * @param[in] file_name 
+     * @param[in] extension 
+     * @return std::string 
+     */
+    static std::string getFilePath(std::string file_name, std::string extension);
+
+    /**
+     * @brief Get the path to file relative to pointcloud path defined. If file name ends with number, you could specify it separately.
+     * 
+     * @param[in] file_name 
+     * @param[in] extension 
+     * @param[in] counter 
+     * @return std::string 
+     */
+    static std::string getFilePath(std::string file_name, std::string extension, int counter);
+
+    /**
+     * @brief Convert file given from .ptx format to PCL .pcd format.
+     *        \n Automatically saved in same path than input cloud.
+     * 
+     * @param file_name 
+     */
+    static void ptx2pcd(std::string file_name);
+
+private:
+
+    /** @brief  Absolute Path to leica_scanstation_utils/pointclouds folder   */
+    static std::string _pointcloud_path;
+
+    /** @brief  Default Absolute Path to leica_scanstation_utils/pointclouds folder. It is OS dependent  */
+    static std::string _default_pointcloud_path;
 };

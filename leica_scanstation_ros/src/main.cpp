@@ -63,10 +63,10 @@ int main(int argc, char **argv)
 	}
 	else 
 	{
-		pc_path = LeicaUtils::getDefaultPointcloudFolder();
+		pc_path = LeicaUtils::getDefaultPointcloudPath();
 		ROS_INFO("Default pointclouds path: %s", pc_path.c_str());
 	}
-	LeicaUtils::setPointCloudFolder(pc_path);
+	LeicaUtils::setPointCloudPath(pc_path);
 
 	LeicaNode leica_node = LeicaNode();
 	

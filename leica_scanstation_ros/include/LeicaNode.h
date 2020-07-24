@@ -14,9 +14,11 @@
 #include <sensor_msgs/Image.h>
 #include <sensor_msgs/image_encodings.h>
 #include <sensor_msgs/fill_image.h>
+
 #include <leica_scanstation_msgs/EventerInfo.h>
 #include <leica_scanstation_msgs/PointCloudFile.h>
 #include <leica_scanstation_msgs/MotorPose.h>
+#include <leica_scanstation_msgs/Video.h>
 #include <leica_scanstation_msgs/Scan.h>
 
 #include "leica_scanstation_utils/LeicaUtils.h"
@@ -115,6 +117,24 @@ public:
     static void getImageMsg(sensor_msgs::Image *img_msg);
 
     /**
+     * @brief Scan the network to search for Leica Scanstations.
+     * 
+     */
+    void searchForScanner(int* numberFound);
+
+    /**
+     * @brief Connect PC with Leica Scanstation device.
+     * 
+     */
+    void connectToScanner();
+    
+    /**
+     * @brief Start video in Leica Scanstation device. Images are published in ROS topic.
+     * 
+     */
+    void startVideo();
+
+    /**
      * @brief Service callback to connect PC with Leica Scanstation device.
      * 
      */
@@ -185,7 +205,8 @@ public:
                 std_srvs::SetBool::Response &res);
 
     /**
-     * @brief Service callback to start video in Leica Scanstation device.
+     * @brief Service callback to start video in Leica Scanstation device. 
+     * Images are published in ROS topic.
      * 
      */
     bool videoCb(leica_scanstation_msgs::MotorPose::Request &req, 

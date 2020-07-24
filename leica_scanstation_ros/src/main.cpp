@@ -1,9 +1,3 @@
-#include <leica_scanstation_msgs/PointCloudFile.h>
-#include <leica_scanstation_msgs/Scan.h>
-#include <leica_scanstation_msgs/MotorPose.h>
-#include <leica_scanstation_msgs/EventerInfo.h>
-#include <leica_scanstation_msgs/Video.h>
-// #include "HxiDefinitions.h"
 #include "LeicaNode.h"
 #include "EventAnalyser.h"
 #include "leica_scanstation_utils/LeicaUtils.h"
@@ -84,33 +78,27 @@ int main(int argc, char **argv)
 	g_client = leica_node._client;
 
 	int serial_number = 1260916; // not needed
-	int list, nfound;
+	int nfound;
 
 	// Scan the network to get scanners
-	HXI_FindScanner(2, &list, &nfound);
+	leica_node.searchForScanner(&nfound);
 	ROS_INFO("found %d scanners",nfound);
 
-	// Stop program if no scanner found
-/* 	if (nfound <= 0)
+	if (nfound > 0)
 	{
-		ROS_INFO("Exiting");
-		ros::shutdown();
-		return 0;
-	} */
+		// Scanner responds to commands by sending user events
+		// We use the event handler to analyse this response
+		ROS_INFO("Setting event handler");
+		EventAnalyser::setEventHandler(ScannerEventHandler);
 
-	// Scanner responds to commands by sending user events
-	// We use the event handler to analyse this response
-	ROS_INFO("Setting event handler");
-	EventAnalyser::setEventHandler(ScannerEventHandler);
-	// EventAnalyser::setEventHandler(EventAnalyser::ScannerEventHandler);
+		// Connect to scanner
+		ROS_INFO("Connecting");
+		leica_node.connectToScanner();
 
-	// Connect to scanner
-	ROS_INFO("Connecting");
-	HXI_OpenScanner();
-
-	// When connected, scanner start publishing video images
-	ROS_INFO("Starting video");
-	HXI_BeginVideo();
+		// When connected, scanner start publishing video images
+		ROS_INFO("Starting video");
+		leica_node.startVideo();
+	}
 
 	// Start ros services to control scanner
 	leica_node.openServices();

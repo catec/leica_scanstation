@@ -34,6 +34,22 @@ void LeicaNode::publishScanPointcloudFile(ros::ServiceClient client, std::string
 	client.call(srv);
 }
 
+void LeicaNode::searchForScanner(int* numberFound)
+{
+	int list;
+	HXI_FindScanner(5, &list, numberFound);
+}
+
+void LeicaNode::connectToScanner()
+{
+	HXI_OpenScanner();
+}
+
+void LeicaNode::startVideo()
+{
+	HXI_BeginVideo();
+}
+
 void LeicaNode::openServices()
 {
 	_srv0 = _nh.advertiseService("connect",	   &LeicaNode::connectCb,this);

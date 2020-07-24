@@ -20,7 +20,7 @@ For **development purposes**, please refer to *leica_scanstation_ros* documentat
     - to read and understand the information sent by the scanstation which is published in a ROS topic. 
     - to view the video captured by the device which is published as images in another ROS Topic.
 
-- **leica_scanstation_ros_release**. This is not a ROS package but a container for the application and the library files needed to run it. The aim is to be able to execute the program in both Windows and Linux (this one requires additional tools such as wine).
+- **leica_scanstation_ros_release**. This is not a ROS package but a container for the application already compiled and the library files needed to run it. The aim is to be able to execute the program in both Windows and Linux (this one requires additional tools such as wine), avoiding compilation errors.
 
 - **leica_scanstation_msgs**. This package defines types of messages and services that permit interpretation of the scanner information.
 It is OS independent.

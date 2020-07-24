@@ -3,4 +3,4 @@
 *.ptx
 *.pcd
 .vscode/
-doc/*
+*/doc/*

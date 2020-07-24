@@ -10,7 +10,7 @@ Both cases requires the listed Dependencies to be installed.
 
 - For development purposes, please refer to Set Up and Documentation.
 
-- For using and testing the system, please refer to Usage in the correspondent OS and take a look at Utils for cmd.
+- For using and testing the system, please refer to Usage and take a look at Utils for cmd.
 
 # Dependencies #
 
@@ -28,7 +28,7 @@ Clone and compile these repos:
 0. Mandatory: Windows 10
 1. Create the following workspace *catkin_ws*
 2. Clone repo on your workspace
-3. Place Leica libraries where it can be reached by this package:
+3. Place Leica libraries where they can be reached by this package:
 
    - HxiDefinitions.h -> `c:/opt/leica/include`
 
@@ -39,38 +39,28 @@ Clone and compile these repos:
 
 4. We created scripts to do this: 
 
-        cd leica_scanstation_ros\config
+        cd leica_scanstation\leica_scanstation_ros\config
         SetLibraryFiles.bat
 
-5. Compile
+5. Start development here. When ready, compile it.
 
         cd catkin_ws
         catkin_make
+        devel\setup.bat
 
 6. Before running, move DLL files
 
-        cd catkin_ws\src\leica_scanstation_ros\config
+        cd leica_scanstation\leica_scanstation_ros\config
         SetDLLFiles.bat
 
-7. Ready for development. Once finished, release it:
+7. Program could also be executed under linux OS, so once finished, release it:
    
-   - Compile
+        cd leica_scanstation\leica_scanstation_ros\config
+        ExportProgram.bat
 
-                cd catkin_ws && catkin_make
-
-   - Move to repo directory and delete /release folder
-        
-                cd src\leica_scanstation_ros && rmdir /q/s release
-
-   - Move to config folder and export program
-
-                cd config && ExportProgram.bat
-
-   - Files will be saved under `/release` folder
-
+   - Files will be saved under `leica_scanstation\leica_scanstation_ros_release` folder
 
 # Usage #
-## Windows
 
         roslaunch leica_scanstation_ros start.launch
 
@@ -87,7 +77,7 @@ Info:
 Service calls:
 
         rosservice call /leica/connect
-        rosservice call /leica/convert "scan00"
+        rosservice call /leica/convert "scan0"
         rosservice call /leica/move 0 0
-        rosservice call /leica/scan_info "scan00"
-        rosservice call /leica/scan "sala" 100 100 0 0 0.2 0.2
+        rosservice call /leica/scan_info "scan0"
+        rosservice call /leica/scan "scan" 100 100 0 0 0.2 0.2

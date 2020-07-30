@@ -30,8 +30,10 @@ It is OS independent.
 
 ## Dependencies 
 - [ROS for Windows](http://wiki.ros.org/Installation/Windows) // [ROS for Ubuntu](http://wiki.ros.org/Installation/Ubuntu)
+- [Wine for ubuntu](https://tecadmin.net/install-wine-on-ubuntu/)
 - Eigen3
-- wine for ubuntu
+
+        sudo apt-get install libeigen3-dev
 
 ## Usage
 ### Windows

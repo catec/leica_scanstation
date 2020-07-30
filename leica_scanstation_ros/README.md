@@ -1,4 +1,4 @@
-# Leica Scanstation SDK control
+# Leica Scanstation ROS
 
 This package is created to control in PC, throught ROS interface, the Leica Scanstation C5.
 Tested on ROS Melodic for Windows 10.
@@ -6,23 +6,12 @@ Tested on ROS Melodic for Windows 10.
 Due to Leica's libraries dependencies, the source code development is done under Windows 10. 
 
 Once the program is released, it could be executed in either Windows or Linux (with tools such us Wine).
-Both cases requires the listed Dependencies to be installed. 
-
-- For development purposes, please refer to Set Up and Documentation.
-
-- For using and testing the system, please refer to Usage and take a look at Utils for cmd.
 
 # Dependencies #
 
-- ROS
+- [ROS](http://wiki.ros.org/Installation/Windows)
 
-- Eigen3
-
-Clone and compile these repos:
-
-- [leica_scanstation_msgs](https://bitbucket.org/ayr_catec/leica_scanstation_msgs/src/master/)
-
-- [leica_scanstation_utils](https://bitbucket.org/ayr_catec/leica_scanstation_utils/src/master/)
+Recomended: `ros-melodic-desktop_full`
 
 # Set up #
 0. Mandatory: Windows 10
@@ -68,16 +57,4 @@ Use [ROS services](#utils-for-w10-cmd) to control, move and start scanning on th
 
         rosservice list
 
-## Utils for W10 cmd
-Info:
-
-        rostopic echo /eventer_info
-        rosrun image_view image_view image:=/image
-
-Service calls:
-
-        rosservice call /leica/connect
-        rosservice call /leica/convert "scan0"
-        rosservice call /leica/move 0 0
-        rosservice call /leica/scan_info "scan0"
-        rosservice call /leica/scan "scan" 2048 2048 0 0 0.2 0.2
+# Code API #

@@ -53,8 +53,10 @@ Recomended: `ros-melodic-desktop_full`
 
         roslaunch leica_scanstation_ros start.launch
 
-Use [ROS services](#utils-for-w10-cmd) to control, move and start scanning on the Scanstation
+Use ROS services to control, move and start scanning on the Scanstation
 
         rosservice list
 
 # Code API #
+
+Read documentation `leica_scanstation_ros/doc/html/index.html`

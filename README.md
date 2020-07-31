@@ -14,6 +14,8 @@ In the following sections, it is described which packages are included and an ex
 
 For **development purposes**, please refer to *leica_scanstation_ros* documentation. 
 
+It is involved in the ROSIN project [Large_3D_inspection](http://wiki.ros.org/large_3d_inspection)
+
 ## Package List
 - **leica_scanstation_ros**. Based on Leica SDK, this package contains functions to communicate with the device using a computer. Note that this package won't compile on Linux. It includes a ROS node with the following options:
     - operating the device through ROS services. 
@@ -40,7 +42,7 @@ It is OS independent.
 1. Create a workspace, clone and compile this repo
 
         mkdir catkin_ws\src && cd catkin_ws\src
-        git clone https://imlara@bitbucket.org/ayr_catec/leica_scanstation.git
+        git clone https://github.com/fada-catec/leica_scanstation.git
         cd ..
         catkin_make
         devel\setup.bat
@@ -49,7 +51,7 @@ It is OS independent.
 
         roslaunch leica_scanstation_ros start.launch
 
-3. Use [ROS services](#code-api) to control, move and start scanning on the Scanstation
+3. Use ROS services to control, move and start scanning on the Scanstation
 
         rosservice list
 
@@ -57,7 +59,7 @@ It is OS independent.
 1. Create a workspace and clone this repo
 
         mkdir -p ~/catkin_ws/src && cd ~/catkin_ws/src
-        git clone https://imlara@bitbucket.org/ayr_catec/leica_scanstation.git
+        git clone https://github.com/fada-catec/leica_scanstation.git
 
 2. Remove package *leica_scanstation_ros* to avoid compilation errors.
 
@@ -74,10 +76,20 @@ It is OS independent.
         cd ~/catkin_ws/src/leica_scanstation/leica_scanstation_ros_release
         wineconsole leica_scanstation_ros_node.exe
 
-6. Use [ROS services](#code-api) to control, move and start scanning on the Scanstation
+6. Use ROS services to control, move and start scanning on the Scanstation
 
         rosservice list
 
 ## Code API
 
 [Topics, Services, Params](http://wiki.ros.org/leica_scanstation#Code_API)
+
+Read documentation on
+
+`leica_scanstation_ros/doc/html/index.html`
+
+`leica_scanstation_utils/doc/html/index.html`
+
+
+## Help
+Ines M. Lara - imlara@catec.aero

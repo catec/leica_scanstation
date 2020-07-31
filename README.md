@@ -17,12 +17,12 @@ For **development purposes**, please refer to *leica_scanstation_ros* documentat
 It is involved in the ROSIN project [Large_3D_inspection](http://wiki.ros.org/large_3d_inspection)
 
 ## Package List
-- **leica_scanstation_ros**. Based on Leica SDK, this package contains functions to communicate with the device using a computer. Note that this package won't compile on Linux. It includes a ROS node with the following options:
+- **leica_scanstation_ros**. Based on Leica SDK, this package contains functions to communicate with the device using a computer. Note that this package is meant to be compiled and executed in Windows. It includes a ROS node with the following options:
     - operating the device through ROS services. 
     - to read and understand the information sent by the scanstation which is published in a ROS topic. 
     - to view the video captured by the device which is published as images in another ROS Topic.
 
-- **leica_scanstation_ros_release**. This is not a ROS package but a container for the application already compiled and the library files needed to run it. The aim is to be able to execute the program in both Windows and Linux (this one requires additional tools such as wine), avoiding compilation errors.
+- **leica_scanstation_ros_release**. This is a container for the application already compiled and the library files needed to run it. The aim is to be able to execute the program in both Windows and Linux (this one requires additional tools such as wine), avoiding compilation errors.
 
 - **leica_scanstation_msgs**. This package defines types of messages and services that permit interpretation of the scanner information.
 It is OS independent.
@@ -55,7 +55,7 @@ It is OS independent.
 
         rosservice list
 
-### Ubuntu
+### Ubuntu (using Wine)
 1. Create a workspace and clone this repo
 
         mkdir -p ~/catkin_ws/src && cd ~/catkin_ws/src

@@ -1,0 +1,17 @@
+actions: []
+authors: Ines Lara Sicilia <imlara@catec.aero>
+brief: ''
+bugtracker: ''
+depends:
+- std_msgs
+- rospy
+- roscpp
+- catkin
+description: The leica_scanstation_utils package
+license: Apache 2.0
+maintainers: Ines Lara Sicilia <imlara@catec.aero>
+msgs: []
+package_type: package
+repo_url: ''
+srvs: []
+url: ''

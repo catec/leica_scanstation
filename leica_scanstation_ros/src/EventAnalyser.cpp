@@ -41,11 +41,11 @@ std::string EventAnalyser::getStringResult(HxiEventT* Eventer)
 
     // check for scan finished
     if (Eventer->cmd == HXI_SCAN_CMD)
-      _is_scan_finished = true;
+      is_scan_finished_ = true;
 
     // check for end of video image
     if (Eventer->cmd == HXI_SCAN_CMD)
-      _is_new_image = false;
+      is_new_image_ = false;
   }
 
   // Analyse Event In Progress
@@ -53,7 +53,7 @@ std::string EventAnalyser::getStringResult(HxiEventT* Eventer)
   {
     if (Eventer->cmd == HXI_SCAN_CMD || Eventer->cmd == HXI_RESUME_CMD)
     {
-      _is_scan_finished = false;
+      is_scan_finished_ = false;
       std::string percentage = std::to_string(Eventer->value[0] * 100.0);
       string_result = "scanning progress: " + percentage + " %";
     }
@@ -62,7 +62,7 @@ std::string EventAnalyser::getStringResult(HxiEventT* Eventer)
   // Analyse Video Event
   else if (Eventer->mode == HXI_VIDEO_EVENT)
   {
-    _is_new_image = true;
+    is_new_image_ = true;
     string_result = "Video imagen";
   }
 
@@ -191,5 +191,5 @@ void EventAnalyser::assemblePublishMsg(leica_scanstation_msgs::EventerInfo* even
 }
 
 // Initialization
-bool EventAnalyser::_is_new_image = false;
-bool EventAnalyser::_is_scan_finished = false;
+bool EventAnalyser::is_new_image_ = false;
+bool EventAnalyser::is_scan_finished_ = false;

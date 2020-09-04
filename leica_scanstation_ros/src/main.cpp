@@ -40,26 +40,26 @@ int ScannerEventHandler(LeicaEventPtr Eventer)
       ROS_INFO("%s", print_info.c_str());
 
     // check for new image
-    if (EventAnalyser::_is_new_image)
+    if (EventAnalyser::is_new_image_)
     {
       // Publish on topic /image
       sensor_msgs::Image image_msg;
       LeicaNode::getImageMsg(&image_msg);
       LeicaNode::publishVideoImage(g_img_pub, image_msg);
-      EventAnalyser::_is_new_image = false;
+      EventAnalyser::is_new_image_ = false;
     }
 
     // check for scan finished
-    if (EventAnalyser::_is_scan_finished)
+    if (EventAnalyser::is_scan_finished_)
     {
       // convert file scanned
-      std::string scan_file = LeicaNode::_last_file_name;
+      std::string scan_file = LeicaNode::last_file_name_;
       ROS_INFO("Converting file: %s", scan_file.c_str());
       LeicaNode::bin2ptx(scan_file);
       LeicaUtils::ptx2pcd(scan_file);
       ROS_INFO("Saved scan pointcloud on: %s", LeicaUtils::getFilePath(scan_file, ".pcd").c_str());
       LeicaNode::publishScanPointcloudFile(g_client, scan_file);
-      EventAnalyser::_is_scan_finished = false;
+      EventAnalyser::is_scan_finished_ = false;
     }
   }
 
@@ -76,25 +76,20 @@ int main(int argc, char** argv)
   // The param /pointcloud_folder is set by a node on LeicaUtils.
   // Run it using: 	rosrun leica_scanstation_utils main
   std::string pc_path;
-  if (nh.getParam("/pointcloud_folder", pc_path))
+  if (!nh.getParam("/pointcloud_folder", pc_path))
   {
-    ROS_INFO("Pointclouds path: %s", pc_path.c_str());
+    pc_path = LeicaUtils::findPointcloudFolderPath();
   }
-  else
-  {
-    pc_path = LeicaUtils::getDefaultPointcloudPath();
-    ROS_INFO("Default pointclouds path: %s", pc_path.c_str());
-  }
-  LeicaUtils::setPointCloudPath(pc_path);
-
+  ROS_INFO("Pointclouds path: %s", pc_path.c_str());
+  
   LeicaNode leica_node = LeicaNode();
 
   // Get Leica Node publisher in a global copy
-  g_pub = leica_node._pub;
-  g_img_pub = leica_node._img_pub;
+  g_pub = leica_node.pub_;
+  g_img_pub = leica_node.img_pub_;
 
   // Get Leica Node client in a global copy
-  g_client = leica_node._client;
+  g_client = leica_node.client_;
 
   int serial_number = 1260916;  // not needed
   int nfound;

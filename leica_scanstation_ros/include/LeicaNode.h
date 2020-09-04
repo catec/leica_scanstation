@@ -63,16 +63,16 @@ public:
    */
   ~LeicaNode();
 
-  ros::NodeHandle _nh;
-  ros::Publisher _pub, _img_pub;
-  ros::ServiceClient _client;
-  ros::ServiceServer _srv0, _srv1, _srv2, _srv3, _srv4, _srv5, _srv6, _srv7, _srv8, _srv9, _srv10;
+  ros::NodeHandle nh_;
+  ros::Publisher pub_, img_pub_;
+  ros::ServiceClient client_;
+  ros::ServiceServer srv0_, srv1_, srv2_, srv3_, srv4_, srv5_, srv6_, srv7_, srv8_, srv9_, srv10_;
 
   /** @brief Counter scans */
-  int _counter;
+  int counter_;
 
   /** @brief Store last scan file name  */
-  static std::string _last_file_name;
+  static std::string last_file_name_;
 
   /**
    * @brief Start ROS services to control Leica Scanstation C5.

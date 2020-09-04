@@ -56,10 +56,10 @@ public:
   }
 
   /** @brief Flag to indicate a new image is available */
-  static bool _is_new_image;
+  static bool is_new_image_;
 
   /** @brief Flag to indicate the scan process is finished */
-  static bool _is_scan_finished;
+  static bool is_scan_finished_;
 
   /**
    * @brief Get a string specifying the meaning of the received event.

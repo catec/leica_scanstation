@@ -31,24 +31,24 @@ void ptx_2_pcd::operator()(const std::string& ptx_fname)
   std::string line;
 
   std::getline(ptx_file, line);
-  _cols = atoi(line.c_str());
+  cols_ = atoi(line.c_str());
 
   std::getline(ptx_file, line);
-  _rows = atoi(line.c_str());
+  rows_ = atoi(line.c_str());
 
   // Mat transf scaner
   std::getline(ptx_file, line);
-  fillMatrixRow(_scan_tf, parseLine(line), 3);
+  fillMatrixRow(scan_tf_, parseLine(line), 3);
   for (int i = 0; i < 3; i++)
   {
     std::getline(ptx_file, line);
-    fillMatrixRow(_scan_tf, parseLine(line), i);
+    fillMatrixRow(scan_tf_, parseLine(line), i);
   }
   // Mat transf puntos
   for (int i = 0; i < 4; i++)
   {
     std::getline(ptx_file, line);
-    fillMatrixRow(_point_tf, parseLine(line), i);
+    fillMatrixRow(point_tf_, parseLine(line), i);
   }
 
   pcd_file << buildHeader();
@@ -84,7 +84,7 @@ inline std::vector<float> ptx_2_pcd::parseLine(const std::string& line)
 
 inline std::string ptx_2_pcd::transformPoint(const Eigen::Vector4f& point)
 {
-  Eigen::Vector4f tf_point = point.transpose() * _point_tf;
+  Eigen::Vector4f tf_point = point.transpose() * point_tf_;
   std::stringstream o_point;
   // [x, y, z, 1]
   for (int i = 0; i < 2; i++)
@@ -122,10 +122,10 @@ inline std::string ptx_2_pcd::buildHeader()
   sstream << "SIZE 4 4 4\n";
   sstream << "TYPE F F F\n";
   sstream << "COUNT 1 1 1\n";
-  sstream << "WIDTH " << _cols << "\n";
-  sstream << "HEIGHT " << _rows << "\n";
-  sstream << "VIEWPOINT " << _scan_tf.row(3) << " 1 0 0 0\n";
-  sstream << "POINTS " << _cols * _rows << "\n";
+  sstream << "WIDTH " << cols_ << "\n";
+  sstream << "HEIGHT " << rows_ << "\n";
+  sstream << "VIEWPOINT " << scan_tf_.row(3) << " 1 0 0 0\n";
+  sstream << "POINTS " << cols_ * rows_ << "\n";
   sstream << "DATA ascii\n";
   return sstream.str();
 }

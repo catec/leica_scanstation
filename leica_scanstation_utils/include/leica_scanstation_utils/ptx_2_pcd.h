@@ -53,16 +53,16 @@ public:
 
 private:
   /** @brief   Number of matrix rows  */
-  int _rows{};
+  int rows_{};
 
   /** @brief   Number of matrix cols  */
-  int _cols{};
+  int cols_{};
 
   /** @brief   Cloud's points transformation matrix */
-  Eigen::Matrix4f _point_tf{};
+  Eigen::Matrix4f point_tf_{};
 
   /** @brief   Scanner's POV transformation matrix  */
-  Eigen::Matrix<float, 4, 3> _scan_tf;
+  Eigen::Matrix<float, 4, 3> scan_tf_;
 
   /**
    * @brief  Parse and extract file extension

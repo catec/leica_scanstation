@@ -17,15 +17,15 @@
  
 #include "LeicaNode.h"
 
-// LeicaNode::LeicaNode(ros::NodeHandle* nodehandle):_nh(*nodehandle)
-LeicaNode::LeicaNode() : _nh(ros::this_node::getName())
+// LeicaNode::LeicaNode(ros::NodeHandle* nodehandle):nh_(*nodehandle)
+LeicaNode::LeicaNode() : nh_(ros::this_node::getName())
 {
   ROS_DEBUG("[%s] LeicaNode::LeicaNode()", ros::this_node::getName().data());
-  _pub = _nh.advertise<leica_scanstation_msgs::EventerInfo>("/eventer_info", 10);
-  _img_pub = _nh.advertise<sensor_msgs::Image>("/image", 10);
-  _client = _nh.serviceClient<leica_scanstation_msgs::PointCloudFile>("/publish_clouds");
+  pub_ = nh_.advertise<leica_scanstation_msgs::EventerInfo>("/eventer_info", 10);
+  img_pub_ = nh_.advertise<sensor_msgs::Image>("/image", 10);
+  client_ = nh_.serviceClient<leica_scanstation_msgs::PointCloudFile>("/publish_clouds");
 
-  _counter = 0;
+  counter_ = 0;
 }
 
 LeicaNode::~LeicaNode()
@@ -69,17 +69,17 @@ void LeicaNode::startVideo()
 
 void LeicaNode::openServices()
 {
-  _srv0 = _nh.advertiseService("connect", &LeicaNode::connectCb, this);
-  _srv1 = _nh.advertiseService("disconnect", &LeicaNode::disconnectCb, this);
-  _srv2 = _nh.advertiseService("convert", &LeicaNode::conversionCb, this);
-  _srv3 = _nh.advertiseService("move", &LeicaNode::moveCb, this);
-  _srv4 = _nh.advertiseService("tilt", &LeicaNode::tiltCb, this);
-  _srv5 = _nh.advertiseService("scan_info", &LeicaNode::scaninfoCb, this);
-  _srv6 = _nh.advertiseService("scan", &LeicaNode::scanCb, this);
-  _srv7 = _nh.advertiseService("cancel", &LeicaNode::cancelCb, this);
-  _srv8 = _nh.advertiseService("pause", &LeicaNode::pauseCb, this);
-  _srv9 = _nh.advertiseService("resume", &LeicaNode::resumeCb, this);
-  _srv10 = _nh.advertiseService("video", &LeicaNode::videoCb, this);
+  srv0_ = nh_.advertiseService("connect", &LeicaNode::connectCb, this);
+  srv1_ = nh_.advertiseService("disconnect", &LeicaNode::disconnectCb, this);
+  srv2_ = nh_.advertiseService("convert", &LeicaNode::conversionCb, this);
+  srv3_ = nh_.advertiseService("move", &LeicaNode::moveCb, this);
+  srv4_ = nh_.advertiseService("tilt", &LeicaNode::tiltCb, this);
+  srv5_ = nh_.advertiseService("scan_info", &LeicaNode::scaninfoCb, this);
+  srv6_ = nh_.advertiseService("scan", &LeicaNode::scanCb, this);
+  srv7_ = nh_.advertiseService("cancel", &LeicaNode::cancelCb, this);
+  srv8_ = nh_.advertiseService("pause", &LeicaNode::pauseCb, this);
+  srv9_ = nh_.advertiseService("resume", &LeicaNode::resumeCb, this);
+  srv10_ = nh_.advertiseService("video", &LeicaNode::videoCb, this);
 }
 
 int LeicaNode::bin2ptx(std::string file_name)
@@ -189,7 +189,7 @@ bool LeicaNode::scanCb(leica_scanstation_msgs::Scan::Request& req, leica_scansta
   float* window;
   window = new float[4];
 
-  CString file_path = LeicaUtils::getFilePath(req.file_name, ".bin", _counter).c_str();
+  CString file_path = LeicaUtils::getFilePath(req.file_name, ".bin", counter_).c_str();
 
   ROS_INFO("Saving scan on: %S", file_path);
 
@@ -213,9 +213,9 @@ bool LeicaNode::scanCb(leica_scanstation_msgs::Scan::Request& req, leica_scansta
   HXI_FetchScan(window, size, &file_path);
 
   // Save file name to be converted
-  _last_file_name = req.file_name + std::to_string(_counter);
+  last_file_name_ = req.file_name + std::to_string(counter_);
 
-  _counter++;
+  counter_++;
 
   res.message = "Scanning";
   res.success = true;
@@ -227,7 +227,7 @@ bool LeicaNode::cancelCb(std_srvs::Trigger::Request& req, std_srvs::Trigger::Res
   ROS_INFO("Cancel requested ");
   HXI_Cancel();
 
-  _counter--;  // Last scan was cancelled
+  counter_--;  // Last scan was cancelled
 
   res.message = "Canceled";
   res.success = true;
@@ -307,4 +307,4 @@ void LeicaNode::getImageMsg(sensor_msgs::Image* img_msg)
 }
 
 // Initialization
-std::string LeicaNode::_last_file_name = "";
+std::string LeicaNode::last_file_name_ = "";

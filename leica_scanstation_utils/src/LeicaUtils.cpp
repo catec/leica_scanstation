@@ -18,35 +18,31 @@
 
 #include "leica_scanstation_utils/LeicaUtils.h"
 
-std::string LeicaUtils::getDefaultPointcloudPath()
-{
-  return _default_pointcloud_path;
-}
 
 std::string LeicaUtils::findPointcloudFolderPath()
 {
   std::string pkg_path = ros::package::getPath("leica_scanstation_utils");
 
-  std::size_t i = pkg_path.find("leica_scanstation_utils");
+  std::size_t i = pkg_path.find("leica_scanstation"); // because of mixed / and \ separators
   pkg_path = pkg_path.substr(0, i - 1);
 
-  _pointcloud_path = pkg_path + "/leica_scanstation_utils/pointclouds/";
-  return _pointcloud_path;
+  pointcloud_path_ = pkg_path + "/leica_scanstation/leica_scanstation_utils/pointclouds/";
+  return pointcloud_path_;
 }
 
 std::string LeicaUtils::getPointCloudPath()
 {
-  return _pointcloud_path;
+  return pointcloud_path_;
 }
 
 void LeicaUtils::setPointCloudPath(std::string pc_path)
 {
-  _pointcloud_path = pc_path;
+  pointcloud_path_ = pc_path;
 }
 
 std::string LeicaUtils::getFilePath(std::string file_name, std::string extension)
 {
-  std::string file_path = _pointcloud_path;
+  std::string file_path = pointcloud_path_;
 
   file_path += file_name + extension;
 
@@ -55,7 +51,7 @@ std::string LeicaUtils::getFilePath(std::string file_name, std::string extension
 
 std::string LeicaUtils::getFilePath(std::string file_name, std::string extension, int counter)
 {
-  std::string file_path = _pointcloud_path;
+  std::string file_path = pointcloud_path_;
   std::string scan_number = std::to_string(counter);
 
   file_path += file_name + scan_number + extension;
@@ -70,5 +66,4 @@ void LeicaUtils::ptx2pcd(std::string file_name)
 }
 
 // Initialization
-std::string LeicaUtils::_pointcloud_path = "";
-std::string LeicaUtils::_default_pointcloud_path = DEFAULT_PATH;
+std::string LeicaUtils::pointcloud_path_ = "";

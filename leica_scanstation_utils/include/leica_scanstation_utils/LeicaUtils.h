@@ -27,17 +27,6 @@
 
 #endif
 
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
-#define DEFAULT_PATH "C:/Users/inesPC/catkin_ws/src/leica_scanstation/leica_scanstation_utils/pointclouds/"
-
-#elif __linux__
-#define DEFAULT_PATH "/home/catec/catkin_ws/src/leica_scanstation/leica_scanstation_utils/pointclouds/"
-
-#elif __unix__  // all unices not caught above
-#define DEFAULT_PATH "/home/catec/catkin_ws/src/leica_scanstation/leica_scanstation_utils/pointclouds/"
-
-#endif
-
 class LeicaUtils
 {
 public:
@@ -47,13 +36,6 @@ public:
    * @return std::string
    */
   static std::string findPointcloudFolderPath();
-
-  /**
-   * @brief Get the Default Pointcloud Path object
-   *
-   * @return std::string
-   */
-  static std::string getDefaultPointcloudPath();
 
   /**
    * @brief Get the Point Cloud Path object
@@ -113,8 +95,5 @@ private:
   }
 
   /** @brief  Absolute Path to leica_scanstation_utils/pointclouds folder   */
-  static std::string _pointcloud_path;
-
-  /** @brief  Default Absolute Path to leica_scanstation_utils/pointclouds folder. It is OS dependent  */
-  static std::string _default_pointcloud_path;
+  static std::string pointcloud_path_;
 };

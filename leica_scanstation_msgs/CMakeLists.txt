@@ -8,12 +8,6 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
 )
 
-add_message_files(
-  FILES 
-  EventerInfo.msg 
-  Video.msg
-)
-
 add_service_files(
   FILES 
   PointCloudFile.srv 

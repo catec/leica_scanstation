@@ -26,7 +26,7 @@ ros::ServiceClient g_client;
 int ScannerEventHandler(LeicaEventPtr Eventer)
 {
   // Publish on topic /eventer_info
-  leica_scanstation_msgs::EventerInfo event_msg;
+  diagnostic_msgs::DiagnosticStatus event_msg;
   EventAnalyser::assemblePublishMsg(&event_msg, Eventer);
   LeicaNode::publishEventerInfo(g_pub, event_msg);
 

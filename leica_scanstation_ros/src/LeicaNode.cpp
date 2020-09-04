@@ -21,7 +21,7 @@
 LeicaNode::LeicaNode() : nh_(ros::this_node::getName())
 {
   ROS_DEBUG("[%s] LeicaNode::LeicaNode()", ros::this_node::getName().data());
-  pub_ = nh_.advertise<leica_scanstation_msgs::EventerInfo>("/eventer_info", 10);
+  pub_ = nh_.advertise<diagnostic_msgs::DiagnosticStatus>("/eventer_info", 10);
   img_pub_ = nh_.advertise<sensor_msgs::Image>("/image", 10);
   client_ = nh_.serviceClient<leica_scanstation_msgs::PointCloudFile>("/publish_clouds");
 
@@ -33,7 +33,7 @@ LeicaNode::~LeicaNode()
   ROS_DEBUG("[%s] LeicaNode::~LeicaNode()", ros::this_node::getName().data());
 }
 
-void LeicaNode::publishEventerInfo(ros::Publisher pub, leica_scanstation_msgs::EventerInfo event_msg)
+void LeicaNode::publishEventerInfo(ros::Publisher pub, diagnostic_msgs::DiagnosticStatus event_msg)
 {
   pub.publish(event_msg);
 }

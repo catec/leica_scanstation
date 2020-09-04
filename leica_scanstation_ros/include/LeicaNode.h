@@ -30,11 +30,10 @@
 #include <sensor_msgs/Image.h>
 #include <sensor_msgs/image_encodings.h>
 #include <sensor_msgs/fill_image.h>
+#include <diagnostic_msgs/DiagnosticStatus.h>
 
-#include <leica_scanstation_msgs/EventerInfo.h>
 #include <leica_scanstation_msgs/PointCloudFile.h>
 #include <leica_scanstation_msgs/MotorPose.h>
-#include <leica_scanstation_msgs/Video.h>
 #include <leica_scanstation_msgs/Scan.h>
 
 #include "leica_scanstation_utils/LeicaUtils.h"
@@ -112,7 +111,7 @@ public:
    * @param[in] pub
    * @param[in] event_msg
    */
-  static void publishEventerInfo(ros::Publisher pub, leica_scanstation_msgs::EventerInfo event_msg);
+  static void publishEventerInfo(ros::Publisher pub, diagnostic_msgs::DiagnosticStatus event_msg);
 
   /**
    * @brief Use the specified publisher to publish the Image message.

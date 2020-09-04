@@ -20,7 +20,7 @@
 #define _EVENTANALISER_H
 
 #include <afx.h>
-#include <leica_scanstation_msgs/EventerInfo.h>
+#include <diagnostic_msgs/DiagnosticStatus.h>
 #include "HxiDefinitions.h"
 
 #endif
@@ -60,6 +60,9 @@ public:
 
   /** @brief Flag to indicate the scan process is finished */
   static bool is_scan_finished_;
+
+  /** @brief Name of the hardware device */
+  static const std::string DEVICE_NAME_;
 
   /**
    * @brief Get a string specifying the meaning of the received event.
@@ -113,12 +116,12 @@ public:
   static std::string readDoneEventCmdAndValues(int cmd, float value[2]);
 
   /**
-   * @brief In order to publish the event information, this method creates an EventerInfo ROS message.
+   * @brief In order to publish the event information, this method creates a DiagnosticStatus ROS message.
    *
    * @param event_msg
    * @param Eventer
    */
-  static void assemblePublishMsg(leica_scanstation_msgs::EventerInfo* event_msg, HxiEventT* Eventer);
+  static void assemblePublishMsg(diagnostic_msgs::DiagnosticStatus* event_msg, HxiEventT* Eventer);
 
   /**
    * @brief Asign Event Handler with a function pointer of type notify.

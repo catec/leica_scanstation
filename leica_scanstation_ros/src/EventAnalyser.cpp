@@ -181,15 +181,17 @@ std::string EventAnalyser::readDoneEventCmdAndValues(int cmd, float value[2])
   }
 }
 
-void EventAnalyser::assemblePublishMsg(leica_scanstation_msgs::EventerInfo* event_msg, HxiEventT* Eventer)
+void EventAnalyser::assemblePublishMsg(diagnostic_msgs::DiagnosticStatus* event_msg, HxiEventT* Eventer)
 {
-  event_msg->mode = readEventMode(Eventer->mode);
-  event_msg->cmd = readEventCmd(Eventer->cmd);
-  event_msg->error = isError(Eventer);
-  event_msg->value[0] = Eventer->value[0];
-  event_msg->value[1] = Eventer->value[1];
+  event_msg->level = isError(Eventer)? 2:0; // level values: OK=0, WARN=1, ERROR=2, STALE=3
+  event_msg->name = readEventMode(Eventer->mode);
+  event_msg->message = readEventCmd(Eventer->cmd);
+  event_msg->hardware_id = DEVICE_NAME_;
+  event_msg->values[0].value = Eventer->value[0];
+  event_msg->values[1].value = Eventer->value[1];
 }
 
 // Initialization
 bool EventAnalyser::is_new_image_ = false;
 bool EventAnalyser::is_scan_finished_ = false;
+const std::string EventAnalyser::DEVICE_NAME_ = "LeicaC5";

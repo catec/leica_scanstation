@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   std_srvs
   sensor_msgs
+  diagnostic_msgs
   roslib # necessary to getPath
   leica_scanstation_msgs
   leica_scanstation_utils

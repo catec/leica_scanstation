@@ -13,6 +13,8 @@ Once the program is released, it could be executed in either Windows or Linux (w
 
 Recomended: `ros-melodic-desktop_full`
 
+- Leica SDK (explained below)
+
 # Set up #
 0. Mandatory: Windows 10
 1. Create the following workspace *catkin_ws*
@@ -42,13 +44,6 @@ Recomended: `ros-melodic-desktop_full`
         cd leica_scanstation\leica_scanstation_ros\config
         SetDLLFiles.bat
 
-7. Program could also be executed under linux OS, so once finished, release it:
-   
-        cd leica_scanstation\leica_scanstation_ros\config
-        ExportProgram.bat
-
-   - Files will be saved under `leica_scanstation\leica_scanstation_ros_release` folder
-
 # Usage #
 
         roslaunch leica_scanstation_ros start.launch
@@ -56,6 +51,16 @@ Recomended: `ros-melodic-desktop_full`
 Use ROS services to control, move and start scanning on the Scanstation
 
         rosservice list
+
+# Export program #
+The ROS node created for this package can be executed in a Linux distribution, using tools such as [Wine](https://www.winehq.org/). If you plan to do this, it will be necessary to have the related libraries to run the program. Use the following script to export your application (.exe) and binary files. 
+   
+        cd leica_scanstation\leica_scanstation_ros\config
+        ExportProgram.bat
+
+Files will be saved under your workspace `catkin_ws\src\leica_scanstation_ros_release` folder.
+
+At this point, you could copy this folder into your Linux OS and run the program.
 
 # Code API #
 

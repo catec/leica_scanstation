@@ -22,13 +22,10 @@ It is involved in the ROSIN project [Large_3D_inspection](http://wiki.ros.org/la
     - to read and understand the information sent by the scanstation which is published in a ROS topic. 
     - to view the video captured by the device which is published as images in another ROS Topic.
 
-- **leica_scanstation_ros_release**. This is a container for the application already compiled and the library files needed to run it. The aim is to be able to execute the program in both Windows and Linux (this one requires additional tools such as wine), avoiding compilation errors.
-
 - **leica_scanstation_msgs**. This package defines types of messages and services that permit interpretation of the scanner information.
 It is OS independent.
 
 - **leica_scanstation_utils**. This package contains common functions that assist in the program's execution independently of the OS used. Its main purpose is to define the paths for generating and collecting the point clouds. 
-
 
 ## Dependencies 
 - [ROS for Windows](http://wiki.ros.org/Installation/Windows) // [ROS for Ubuntu](http://wiki.ros.org/Installation/Ubuntu)
@@ -61,22 +58,18 @@ It is OS independent.
         mkdir -p ~/catkin_ws/src && cd ~/catkin_ws/src
         git clone https://github.com/fada-catec/leica_scanstation.git
 
-2. Remove package *leica_scanstation_ros* to avoid compilation errors.
-
-        rm -r leica_scanstation/leica_scanstation_ros
-
-4. Compile
+2. Compile (be careful: package *leica_scanstation_ros* is meant to be compiled on Windows) 
 
         cd ~/catkin_ws
-        catkin_make
+        catkin_make -DCATKIN_BLACKLIST_PACKAGES="leica_scanstation_ros"
 
-5. Start roscore in one terminal and execute app in another
+3. To be able to execute the program with wine, you need to export it first. Read [how to export program](https://github.com/fada-catec/leica_scanstation/blob/master/leica_scanstation_ros/README.md#export-program) to get more information.
 
         roscore
-        cd ~/catkin_ws/src/leica_scanstation/leica_scanstation_ros_release
+        cd ~/catkin_ws/src/leica_scanstation_ros_release
         wineconsole leica_scanstation_ros_node.exe
 
-6. Use ROS services to control, move and start scanning on the Scanstation
+4. Use ROS services to control, move and start scanning on the Scanstation
 
         rosservice list
 

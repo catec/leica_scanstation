@@ -40,6 +40,15 @@ void LeicaUtils::setPointCloudPath(std::string pc_path)
   pointcloud_path_ = pc_path;
 }
 
+std::string LeicaUtils::getFilePath(std::string file_name)
+{
+  std::string file_path = pointcloud_path_;
+
+  file_path += file_name;
+
+  return file_path;
+}
+
 std::string LeicaUtils::getFilePath(std::string file_name, std::string extension)
 {
   std::string file_path = pointcloud_path_;

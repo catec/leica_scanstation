@@ -54,6 +54,14 @@ public:
   /**
    * @brief Get the path to file relative to pointcloud path defined
    *
+   * @param[in] file_name, that includes extension
+   * @return std::string
+   */
+  static std::string getFilePath(std::string file_name);
+
+  /**
+   * @brief Get the path to file relative to pointcloud path defined
+   *
    * @param[in] file_name
    * @param[in] extension
    * @return std::string

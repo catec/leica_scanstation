@@ -1,4 +1,11 @@
-string file_name
+# just file name, no full path.
+# include extensions
+
+# example:
+# rosservice call /publish_clouds "source_cloud_file: 'scan.pcd' target_cloud_file: 'cad.ply'"
+
+string source_cloud_file
+string target_cloud_file
 ---
-bool success   
+bool success
 string message

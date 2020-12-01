@@ -46,7 +46,8 @@ void LeicaNode::publishVideoImage(ros::Publisher pub, sensor_msgs::Image image_m
 void LeicaNode::publishScanPointcloudFile(ros::ServiceClient client, std::string file_name)
 {
   leica_scanstation_msgs::PointCloudFile srv;
-  srv.request.file_name = file_name;
+  srv.request.source_cloud_file = file_name + ".pcd";
+  srv.request.target_cloud_file = file_name + ".ply";
 
   client.call(srv);
 }
@@ -127,8 +128,8 @@ bool LeicaNode::disconnectCb(std_srvs::Trigger::Request& req, std_srvs::Trigger:
 bool LeicaNode::conversionCb(leica_scanstation_msgs::PointCloudFile::Request& req,
                              leica_scanstation_msgs::PointCloudFile::Response& res)
 {
-  CString in_file = LeicaUtils::getFilePath(req.file_name, ".bin").c_str();
-  CString out_file = LeicaUtils::getFilePath(req.file_name, ".ptx").c_str();
+  CString in_file = LeicaUtils::getFilePath(req.source_cloud_file, ".bin").c_str();
+  CString out_file = LeicaUtils::getFilePath(req.source_cloud_file, ".ptx").c_str();
 
   int r = HXI_ConvertToPtx(&in_file, &out_file);
 
@@ -167,7 +168,7 @@ bool LeicaNode::tiltCb(std_srvs::SetBool::Request& req, std_srvs::SetBool::Respo
 bool LeicaNode::scaninfoCb(leica_scanstation_msgs::PointCloudFile::Request& req,
                            leica_scanstation_msgs::PointCloudFile::Response& res)
 {
-  CString file_path = LeicaUtils::getFilePath(req.file_name, ".bin").c_str();
+  CString file_path = LeicaUtils::getFilePath(req.source_cloud_file, ".bin").c_str();
 
   int* size;
   size = new int[2];

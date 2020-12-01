@@ -25,9 +25,12 @@ endmacro(Scanner_REPORT_NOT_FOUND)
 # Search user-installed locations first, so that we prefer user installs
 # to system installs where both exist.
 list(APPEND Scanner_CHECK_INCLUDE_DIRS
-    /opt/leica/include)
+    $ENV{HXI_SCANNER_INCLUDE_PATH})
 list(APPEND Scanner_CHECK_LIBRARY_DIRS
-    /opt/leica/lib)
+    $ENV{HXI_SCANNER_BINARY_PATH})         
+
+message(STATUS "Scanner Scanner_CHECK_INCLUDE_DIRS: " ${Scanner_CHECK_INCLUDE_DIRS})
+message(STATUS "Scanner Scanner_CHECK_LIBRARY_DIRS: " ${Scanner_CHECK_LIBRARY_DIRS})
 
 # Find include directory for Scanner
 find_path(Scanner_INCLUDE_DIR
@@ -36,9 +39,7 @@ find_path(Scanner_INCLUDE_DIR
     NO_DEFAULT_PATH)
 if(NOT Scanner_INCLUDE_DIR OR NOT EXISTS ${Scanner_INCLUDE_DIR})
     Scanner_REPORT_NOT_FOUND(
-        "Could not find Scanner include directory, set Scanner_INCLUDE_DIR to "
-        "path to Scanner include directory,"
-        "e.g. /opt/leica/include")
+        "Could not find Scanner include directory")
 else()
     message(STATUS "Scanner include dir found: " ${Scanner_INCLUDE_DIR})
 endif()
@@ -50,11 +51,11 @@ find_library(Scanner_LIBRARY
     NO_DEFAULT_PATH)
 if(NOT Scanner_LIBRARY OR NOT EXISTS ${Scanner_LIBRARY})
     Scanner_REPORT_NOT_FOUND(
-        "Could not find Scanner library, set Scanner_LIBRARY "
-        "to full path to Scanner library direcotory.")
+        "Could not find Scanner library.")
 else()
     # TODO: need to fix this hacky solution for getting Scanner_LIBRARY_DIR
     string(REGEX MATCH ".*/" Scanner_LIBRARY_DIR ${Scanner_LIBRARY})
+    message(STATUS "Scanner library dir found: " ${Scanner_LIBRARY_DIR})
 endif()
 
 # Mark internally as found, then verify. Scanner_REPORT_NOT_FOUND() unsets if

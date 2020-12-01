@@ -13,54 +13,49 @@ Once the program is released, it could be executed in either Windows or Linux (w
 
 Recomended: `ros-melodic-desktop_full`
 
-- Leica SDK (explained below)
+- Leica HXI SDK.
+
+Note: To get your HXI SDK contact your local Leica supplier.
+
 
 # Set up #
 0. Mandatory: Windows 10
-1. Create the following workspace *catkin_ws*
+1. Create a workspace e.g: *catkin_ws*
+
+        mkdir catkin_ws\src && cd catkin_ws\src
+
 2. Clone repo on your workspace
-3. Place Leica libraries where they can be reached by this package:
 
-   - HxiDefinitions.h -> `c:/opt/leica/include`
+        git clone https://github.com/fada-catec/leica_scanstation.git
 
-   - HxiScanner.lib -> `c:/opt/leica/lib`
+3. Place HXI SDK files on a reachable path. Recommended: create a directory on `c:/opt/hxi_scanner` and copy the content of your HXI SDK into the directory
+        
+4. Set path to SDK files
 
-   - Leica's DLL files -> `catkin_ws/devel/lib/leica_scanstation_ros`  
-   (this is the path where leica_scanstation_ros_node.exe is located) 
+        setx HXI_SCANNER_INCLUDE_PATH c:/opt/hxi_scanner/Include
+        setx HXI_SCANNER_BINARY_PATH c:/opt/hxi_scanner/Release
 
-4. We created scripts to do this: 
-
-        cd leica_scanstation\leica_scanstation_ros\config
-        SetLibraryFiles.bat
-
-5. Start development here. When ready, compile it.
+5. Compile your workspace. 
 
         cd catkin_ws
         catkin_make
         devel\setup.bat
 
-6. Before running, move DLL files
-
-        cd leica_scanstation\leica_scanstation_ros\config
-        SetDLLFiles.bat
-
 # Usage #
 
         roslaunch leica_scanstation_ros start.launch
 
-Use ROS services to control, move and start scanning on the Scanstation
+Use ROS services to control, move and start scanning on the Scanstation. E.g: Try to move your pan and tilt
 
-        rosservice list
+        rosservice call /leica/move 3.141 0.785 
 
 # Export program #
-The ROS node created for this package can be executed in a Linux distribution, using tools such as [Wine](https://www.winehq.org/). If you plan to do this, it will be necessary to have the related libraries to run the program. Use the following script to export your application (.exe) and binary files. 
+The ROS node created for this package can be executed in a Linux distribution, using tools such as [Wine](https://www.winehq.org/). If you plan to do this, it will be necessary to have the related libraries to run the program. Compile the program setting export option. Move the executable file (.exe) and the libraries to your linux system.
    
-        cd leica_scanstation\leica_scanstation_ros\config
-        ExportProgram.bat
+        setx LEICA_EXPORT_PROGRAM ON
+        catkin_make
 
-Files will be saved under your workspace `catkin_ws\src\leica_scanstation_ros_release` folder.
-
-At this point, you could copy this folder into your Linux OS and run the program.
+Files will be exported on your package folder: `catkin_ws\...\leica_scanstation_ros\export`
 
 # Code API #
 

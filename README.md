@@ -34,17 +34,15 @@ It is OS independent.
 
         sudo apt-get install libeigen3-dev
 
+- Leica HXI SDK.
+
+Note: To get your HXI SDK contact your local Leica supplier.
+
 ## Usage
 ### Windows
-1. Create a workspace, clone and compile this repo
+1. Setup your workspace as detailed on [leica_scanstation_ros](https://github.com/fada-catec/leica_scanstation/blob/master/leica_scanstation_ros/README.md#set-up)
 
-        mkdir catkin_ws\src && cd catkin_ws\src
-        git clone https://github.com/fada-catec/leica_scanstation.git
-        cd ..
-        catkin_make
-        devel\setup.bat
-
-2. Execute program
+2. Execute program 
 
         roslaunch leica_scanstation_ros start.launch
 
@@ -66,7 +64,7 @@ It is OS independent.
 3. To be able to execute the program with wine, you need to export it first. Read [how to export program](https://github.com/fada-catec/leica_scanstation/blob/master/leica_scanstation_ros/README.md#export-program) to get more information.
 
         roscore
-        cd ~/catkin_ws/src/leica_scanstation_ros_release
+        cd .../leica_scanstation_ros/export
         wineconsole leica_scanstation_ros_node.exe
 
 4. Use ROS services to control, move and start scanning on the Scanstation
@@ -101,7 +99,7 @@ More information: <a href="http://rosin-project.eu">rosin-project.eu</a>
 <img src="http://rosin-project.eu/wp-content/uploads/rosin_eu_flag.jpg" 
      alt="eu_flag" height="45" align="left" >  
 
-This project has received funding from the European Union’s Horizon 2020  
+This project has received funding from the European Union�s Horizon 2020  
 research and innovation programme under grant agreement no. 732287. 
 
 ## Help

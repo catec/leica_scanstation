@@ -186,8 +186,12 @@ void EventAnalyser::assemblePublishMsg(diagnostic_msgs::DiagnosticStatus* event_
     event_msg->name = readEventMode(Eventer->mode);
     event_msg->message = readEventCmd(Eventer->cmd);
     event_msg->hardware_id = DEVICE_NAME_;
-    event_msg->values[0].value = Eventer->value[0];
-    event_msg->values[1].value = Eventer->value[1];
+    
+    diagnostic_msgs::KeyValue key_value;
+    key_value.value = Eventer->value[0];
+    event_msg->values.push_back(key_value);
+    key_value.value = Eventer->value[1];
+    event_msg->values.push_back(key_value);
 }
 
 // Initialization

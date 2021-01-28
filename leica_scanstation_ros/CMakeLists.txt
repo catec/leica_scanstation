@@ -54,6 +54,13 @@ target_link_libraries(${PROJECT_NAME}_node
   ${PROJECT_NAME}
 )
 
+add_executable(quick_bin2pcd 
+  src/quick_bin2pcd.cpp
+)
+target_link_libraries(quick_bin2pcd
+  ${PROJECT_NAME}
+)
+
 add_dependencies(${PROJECT_NAME}_node 
   leica_scanstation_msgs_generate_messages_cpp
 )
@@ -84,4 +91,6 @@ if($ENV{LEICA_EXPORT_PROGRAM})
   DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/export)                      
   file(INSTALL ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_LIB_DESTINATION}/${PROJECT_NAME}/${PROJECT_NAME}_node.exe
   DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/export)     
+  file(INSTALL ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_LIB_DESTINATION}/${PROJECT_NAME}/quick_bin2pcd.exe
+  DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/export)
 endif() 

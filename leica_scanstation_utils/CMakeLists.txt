@@ -52,3 +52,11 @@ target_link_libraries(main
   ${catkin_LIBRARIES}
   ${PROJECT_NAME}
 )
+
+add_executable(quick_ptx2pcd
+  src/quick_ptx2pcd.cpp
+)
+target_link_libraries(quick_ptx2pcd
+  ${catkin_LIBRARIES}
+  ${PROJECT_NAME}
+)

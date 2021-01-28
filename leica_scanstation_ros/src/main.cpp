@@ -42,11 +42,11 @@ int ScannerEventHandler(LeicaEventPtr Eventer)
         // check for new image
         if (EventAnalyser::is_new_image_)
         {
-        // Publish on topic /image
-        sensor_msgs::Image image_msg;
-        LeicaNode::getImageMsg(&image_msg);
-        LeicaNode::publishVideoImage(g_img_pub, image_msg);
-        EventAnalyser::is_new_image_ = false;
+            // Publish on topic /image
+            sensor_msgs::Image image_msg;
+            LeicaNode::getImageMsg(&image_msg);
+            LeicaNode::publishVideoImage(g_img_pub, image_msg);
+            EventAnalyser::is_new_image_ = false;
         }
 
         // check for scan finished

@@ -38,20 +38,6 @@ public:
     static std::string findPointcloudFolderPath();
 
     /**
-     * @brief Get the Point Cloud Path object
-     *
-     * @return std::string
-     */
-    static std::string getPointCloudPath();
-
-    /**
-     * @brief Set the Point Cloud Path object
-     *
-     * @param pc_path
-     */
-    static void setPointCloudPath(std::string pc_path);
-
-    /**
      * @brief Get the path to file relative to pointcloud path defined
      *
      * @param[in] file_name, that includes extension
@@ -101,6 +87,4 @@ private:
     ~LeicaUtils()
     {
     }
-    /** @brief  Absolute Path to leica_scanstation_utils/pointclouds folder   */
-    static std::string pointcloud_path_;
 };

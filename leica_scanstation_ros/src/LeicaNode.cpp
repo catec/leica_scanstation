@@ -50,9 +50,13 @@ void LeicaNode::publishVideoImage(ros::Publisher pub, sensor_msgs::Image image_m
 
 void LeicaNode::publishScanPointcloudFile(ros::ServiceClient client, std::string file_name)
 {
+    std::string target_file;
+    if(!ros::param::get("target_cloud_file", target_file))
+        target_file = file_name + ".obj";
+
     leica_scanstation_msgs::PointCloudFile srv;
     srv.request.source_cloud_file = file_name + ".pcd";
-    srv.request.target_cloud_file = file_name + ".ply";
+    srv.request.target_cloud_file = target_file;
 
     client.call(srv);
 }

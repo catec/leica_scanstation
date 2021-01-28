@@ -30,78 +30,77 @@
 class LeicaUtils
 {
 public:
-  /**
-   * @brief Search the absolute path for leica_scanstation_utils/pointclouds folder
-   *
-   * @return std::string
-   */
-  static std::string findPointcloudFolderPath();
+    /**
+     * @brief Search the absolute path for leica_scanstation_utils/pointclouds folder
+     *
+     * @return std::string
+     */
+    static std::string findPointcloudFolderPath();
 
-  /**
-   * @brief Get the Point Cloud Path object
-   *
-   * @return std::string
-   */
-  static std::string getPointCloudPath();
+    /**
+     * @brief Get the Point Cloud Path object
+     *
+     * @return std::string
+     */
+    static std::string getPointCloudPath();
 
-  /**
-   * @brief Set the Point Cloud Path object
-   *
-   * @param pc_path
-   */
-  static void setPointCloudPath(std::string pc_path);
+    /**
+     * @brief Set the Point Cloud Path object
+     *
+     * @param pc_path
+     */
+    static void setPointCloudPath(std::string pc_path);
 
-  /**
-   * @brief Get the path to file relative to pointcloud path defined
-   *
-   * @param[in] file_name, that includes extension
-   * @return std::string
-   */
-  static std::string getFilePath(std::string file_name);
+    /**
+     * @brief Get the path to file relative to pointcloud path defined
+     *
+     * @param[in] file_name, that includes extension
+     * @return std::string
+     */
+    static std::string getFilePath(std::string file_name);
 
-  /**
-   * @brief Get the path to file relative to pointcloud path defined
-   *
-   * @param[in] file_name
-   * @param[in] extension
-   * @return std::string
-   */
-  static std::string getFilePath(std::string file_name, std::string extension);
+    /**
+     * @brief Get the path to file relative to pointcloud path defined
+     *
+     * @param[in] file_name
+     * @param[in] extension
+     * @return std::string
+     */
+    static std::string getFilePath(std::string file_name, std::string extension);
 
-  /**
-   * @brief Get the path to file relative to pointcloud path defined. If file name ends with number, you could specify
-   * it separately.
-   *
-   * @param[in] file_name
-   * @param[in] extension
-   * @param[in] counter
-   * @return std::string
-   */
-  static std::string getFilePath(std::string file_name, std::string extension, int counter);
+    /**
+     * @brief Get the path to file relative to pointcloud path defined. If file name ends with number, you could specify
+     * it separately.
+     *
+     * @param[in] file_name
+     * @param[in] extension
+     * @param[in] counter
+     * @return std::string
+     */
+    static std::string getFilePath(std::string file_name, std::string extension, int counter);
 
-  /**
-   * @brief Convert file given from .ptx format to PCL .pcd format.
-   *        \n Automatically saved in same path than input cloud.
-   *
-   * @param file_name
-   */
-  static void ptx2pcd(std::string file_name);
+    /**
+     * @brief Convert file given from .ptx format to PCL .pcd format.
+     *        \n Automatically saved in same path than input cloud.
+     *
+     * @param file_name
+     */
+    static void ptx2pcd(std::string file_name);
 
 private:
-  /**
-   * @brief This class is not meant to be instantiated.
-   *
-   */
-  LeicaUtils(){};
+    /**
+     * @brief This class is not meant to be instantiated.
+     *
+     */
+    LeicaUtils(){};
 
-  /**
-   * @brief This class is not meant to be instantiated.
-   *
-   */
-  ~LeicaUtils()
-  {
-  }
-
-  /** @brief  Absolute Path to leica_scanstation_utils/pointclouds folder   */
-  static std::string pointcloud_path_;
+    /**
+     * @brief This class is not meant to be instantiated.
+     *
+     */
+    ~LeicaUtils()
+    {
+    }
+    /** @brief  Absolute Path to leica_scanstation_utils/pointclouds folder   */
+    static std::string pointcloud_path_;
 };

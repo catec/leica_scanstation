@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 2.8.3)
 project(leica_scanstation_msgs)
+cmake_minimum_required(VERSION 3.5)
 
 find_package(catkin REQUIRED COMPONENTS
   std_msgs

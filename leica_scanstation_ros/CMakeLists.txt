@@ -1,8 +1,7 @@
-cmake_minimum_required(VERSION 3.11.4)
 project(leica_scanstation_ros)
+cmake_minimum_required(VERSION 3.11.4)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-# SET(CMAKE_GENERATOR_PLATFORM x64)
 find_package(Scanner REQUIRED)
 
 find_package(catkin REQUIRED COMPONENTS
@@ -37,7 +36,7 @@ ADD_DEFINITIONS(-D_UNICODE) # To avoid CString errors
 # add_definitions(-DCMAKE_GENERATOR_PLATFORM=x64) # Build on x64 instead WIN32 (not working)
 set(CMAKE_MFC_FLAG 2)
 
-add_library(${PROJECT_NAME} SHARED
+add_library(${PROJECT_NAME} STATIC
   src/EventAnalyser.cpp
   src/LeicaNode.cpp
 )
@@ -50,8 +49,6 @@ target_link_libraries(${PROJECT_NAME}
 
 add_executable(${PROJECT_NAME}_node 
   src/main.cpp
-  src/EventAnalyser.cpp
-  src/LeicaNode.cpp
 )
 target_link_libraries(${PROJECT_NAME}_node
   ${PROJECT_NAME}
@@ -70,7 +67,7 @@ install(TARGETS ${PROJECT_NAME}
 file(GLOB DLL_FILES ${Scanner_LIBRARY_DIR}/*.dll)
 file(INSTALL ${DLL_FILES}
 DESTINATION ${CATKIN_DEVEL_PREFIX}/${CATKIN_GLOBAL_BIN_DESTINATION})
- 
+
 if($ENV{LEICA_EXPORT_PROGRAM})
   message(STATUS "LEICA_EXPORT_PROGRAM is on")
   file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/export)

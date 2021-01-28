@@ -53,9 +53,7 @@ if(NOT Scanner_LIBRARY OR NOT EXISTS ${Scanner_LIBRARY})
     Scanner_REPORT_NOT_FOUND(
         "Could not find Scanner library.")
 else()
-    # TODO: need to fix this hacky solution for getting Scanner_LIBRARY_DIR
-    string(REGEX MATCH ".*/" Scanner_LIBRARY_DIR ${Scanner_LIBRARY})
-    message(STATUS "Scanner library dir found: " ${Scanner_LIBRARY_DIR})
+    message(STATUS "Scanner library found: " ${Scanner_LIBRARY})
 endif()
 
 # Mark internally as found, then verify. Scanner_REPORT_NOT_FOUND() unsets if
@@ -65,7 +63,7 @@ set(Scanner_FOUND TRUE)
 # Set standard CMake FindPackage variables if found.
 if(Scanner_FOUND)
     set(Scanner_INCLUDE_DIRS ${Scanner_INCLUDE_DIR})
-    file(GLOB Scanner_LIBRARIES ${Scanner_LIBRARY_DIR}HxiScanner.lib)
+    file(GLOB Scanner_LIBRARIES ${Scanner_LIBRARY})
 endif()
 
 # Handle REQUIRED / QUIET optional arguments.

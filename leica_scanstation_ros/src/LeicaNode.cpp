@@ -144,7 +144,6 @@ bool LeicaNode::conversionCb(leica_scanstation_msgs::PointCloudFile::Request& re
 
     res.success = r == 0 ? true : false;
     res.message = r == 0 ? "look at /pointcloud folder" : "failed, please check file name";
-    // todo: mensaje con info mas util
     return true;
 }
 

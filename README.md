@@ -1,5 +1,7 @@
 # LEICA SCANSTATION
 
+[![License](https://img.shields.io/badge/License-Apache%202-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 This repository contains packages created to control in PC, throught ROS interface, the Leica Scanstation C5. 
 
 ![leica](scanstationC5.jpg)
